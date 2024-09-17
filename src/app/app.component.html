@@ -3,14 +3,15 @@
 <main>
 
     <ul id="users">
-        <li>
-            <app-user
-                [avatar]="users[0].avatar"
-                [name]="users[0].name"
-                [id]="users[0].id"
-                (select)="onSelectUser($event)"
-            />
-        </li>
+        @for (user of users; track user.id) {
+            <li>
+                <app-user
+                    [user]="user"
+                    [isSelected]="user.id === selectedUserId"
+                    (select)="onSelectUserParent($event)"
+                />
+            </li>
+        }
     </ul>
 
     <app-tasks [user]="selectedUser" />

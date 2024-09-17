@@ -1,4 +1,5 @@
 import { Component,Input,Output,EventEmitter } from '@angular/core';
+import { type User } from './user.model';
 
 @Component({
     selector: 'app-user',
@@ -10,10 +11,11 @@ import { Component,Input,Output,EventEmitter } from '@angular/core';
 
 export class UserComponent {
     // old 'decorator' way of doing it
-    @Input({required: true}) avatar!: string;   // uitroepteken om TypeScript te laten weten dat deze variabele een waarde gaat krijgen
-    @Input({required: true}) name!: string;
-    @Input({required: true}) id!: string;
-
+    // @Input({required: true}) avatar!: string;   // uitroepteken om TypeScript te laten weten dat deze variabele een waarde gaat krijgen
+    // @Input({required: true}) name!: string;
+    // @Input({required: true}) id!: string;
+    @Input({required: true}) user!: User; // inline objects definieren als Type (2.39)
+    @Input({required: true}) isSelected!: boolean;  // dynamic css (2.48)
     @Output() select = new EventEmitter<string>();
 
     // signal way of doing it
@@ -22,10 +24,10 @@ export class UserComponent {
 
 
     get imagePath() { // belangrijk om 'get' ervoor te zetten
-        return 'assets/user-images/' + this.avatar;
+        return 'assets/user-images/' + this.user.avatar;
     }
 
     onSelectUser() {
-        this.select.emit(this.id);
+        this.select.emit(this.user.id);
     }
 }
