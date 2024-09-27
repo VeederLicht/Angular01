@@ -1,8 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { TaskComponent } from './task/task.component';
 import { NewTaskComponent } from './new-task/new-task.component';
-import { type NewTaskData } from './task/task.model';
 import { TasksService } from './tasks.service';
+import { type User } from '../user/user.model';
 
 @Component({
     selector: 'app-tasks',
@@ -12,28 +12,22 @@ import { TasksService } from './tasks.service';
     styleUrl: './tasks.component.css'
 })
 export class TasksComponent {
-    @Input({required:true}) user!: any;
+    @Input({required:true}) TCuser!: User;
     isAddingTask = false;
 
-    constructor(private tasksService: TasksService) {
+    constructor(private tasksService: TasksService) {   // dependency injection
     }
 
     get selectedUserTasks(){
-        return this.tasksService.getUserTasks(this.user.id);
+        return this.tasksService.getUserTasks(this.TCuser.id);
     }
 
-    onTaskCompleted(taskId: string){
-    }
 
     onStartAddTask(){
         this.isAddingTask = true;
     }
 
-    onCanceledTask(){
-        this.isAddingTask = false;
-    }
-
-    onAddTask(taskData: NewTaskData){
+    onCloseAddTask(){
         this.isAddingTask = false;
     }
 

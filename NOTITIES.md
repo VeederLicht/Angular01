@@ -93,3 +93,22 @@ export class TasksService {
 ```
 
 _Dependency Injection_: Declareer de type class die je nodig hebt en ze worden voor je geinstantieerd. Dit hoef je dus niet expliciet te doen.
+
+## 2.62
+
+Gebruik local storage om data te bewaren tussen refreshes van de pagina.
+
+```typescript
+    constructor(){
+        const LS_tasks = localStorage.getItem('tasks');
+        if (LS_tasks) {  // als er iets is opgeslagen in de localStorage, zal de eerste keer nooit zo zijn
+            this.tasks = JSON.parse(LS_tasks);
+        }
+    }
+
+    // ...
+
+        saveTasks() {
+        localStorage.setItem('tasks', JSON.stringify(this.tasks));
+    }
+```

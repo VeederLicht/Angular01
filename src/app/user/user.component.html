@@ -1,9 +1,9 @@
 <app-card>
-    <button [class.active]="isSelected" (click)="onSelectUser()">
+    <button [class.active]="UCisSelected" (click)="onSelectUser()">
         <img
             [src]="imagePath"
-            [alt]="user.name"
+            [alt]="UCuser.name"
         />
-        <span>{{user.name}}</span>
+        <span>{{UCuser.name}}</span>
     </button>
 </app-card>

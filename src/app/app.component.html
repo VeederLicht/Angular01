@@ -6,14 +6,14 @@
         @for (user of users; track user.id) {
             <li>
                 <app-user
-                    [user]="user"
-                    [isSelected]="user.id === selectedUserId"
+                    [UCuser]="user"
+                    [UCisSelected]="user.id === selectedUserId"
                     (select)="onSelectUserParent($event)"
                 />
             </li>
         }
     </ul>
 
-    <app-tasks [user]="selectedUser" />
+    <app-tasks [TCuser]="selectedUser" />
 
 </main>

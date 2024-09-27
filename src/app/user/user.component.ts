@@ -15,9 +15,9 @@ export class UserComponent {
     // @Input({required: true}) avatar!: string;   // uitroepteken om TypeScript te laten weten dat deze variabele een waarde gaat krijgen
     // @Input({required: true}) name!: string;
     // @Input({required: true}) id!: string;
-    @Input({required: true}) user!: User; // inline objects definieren als Type (2.39)
-    @Input({required: true}) isSelected!: boolean;  // dynamic css (2.48)
-    @Output() select = new EventEmitter<string>();
+    @Input({required: true}) UCuser!: User; // inline objects definieren als Type (2.39)
+    @Input({required: true}) UCisSelected!: boolean;  // dynamic css (2.48)
+    @Output() select = new EventEmitter<User>();
 
     // signal way of doing it
     // avatar = input.required<string>();  // required, dus placeholder is onzin
@@ -25,10 +25,10 @@ export class UserComponent {
 
 
     get imagePath() { // belangrijk om 'get' ervoor te zetten
-        return 'assets/user-images/' + this.user.avatar;
+        return 'assets/user-images/' + this.UCuser.avatar;
     }
 
     onSelectUser() {
-        this.select.emit(this.user.id);
+        this.select.emit(this.UCuser);
     }
 }

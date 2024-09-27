@@ -3,6 +3,7 @@ import { HeaderComponent } from './header/header.component';
 import { UserComponent } from './user/user.component';
 import { DUMMY_USERS } from './dummy-users';
 import { TasksComponent } from './tasks/tasks.component';
+import { User } from './user/user.model';
 
 @Component({
     selector: 'app-root',
@@ -13,13 +14,13 @@ import { TasksComponent } from './tasks/tasks.component';
 })
 export class AppComponent {
     users = DUMMY_USERS;
-    selectedUserId: string = ""
+    selectedUserId: User["id"] = ""
 
-    get selectedUser() {
-        return this.users.find( user => user.id === this.selectedUserId );
+    get selectedUser(): User {
+        return this.users.find( user => user.id === this.selectedUserId )!;     // garandeer TypeScript dat hier geen undefined resulteert
     }
 
-    onSelectUserParent(id: string) {
-        this.selectedUserId = id;
+    onSelectUserParent(user: User) {
+        this.selectedUserId = user.id;
     }
 }
